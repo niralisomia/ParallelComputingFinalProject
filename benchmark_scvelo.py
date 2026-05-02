@@ -28,6 +28,7 @@ args = parser.parse_args()
 # ── Imports ───────────────────────────────────────────────────────────────────
 try:
     import anndata as ad
+    import scanpy as sc
     import scvelo as scv
     from scipy.sparse import issparse
 except ImportError as e:
@@ -58,8 +59,10 @@ print(f"  Cell types: {sorted(adata_raw.obs[cell_type_key].unique())}")
 print("\nPreprocessing...")
 adata_prep = adata_raw.copy()
 t0 = time.perf_counter()
-scv.pp.filter_and_normalize(adata_prep, min_shared_counts=20, n_top_genes=2000)
-scv.pp.moments(adata_prep, n_pcs=30, n_neighbors=30)
+scv.pp.filter_and_normalize(adata_prep, min_shared_counts=20)
+sc.pp.pca(adata_prep, n_comps=30)
+sc.pp.neighbors(adata_prep, n_pcs=30, n_neighbors=30)
+scv.pp.moments(adata_prep)
 prep_time = time.perf_counter() - t0
 print(f"  Preprocessing: {prep_time:.1f}s  ({adata_prep.n_obs} cells x {adata_prep.n_vars} genes after filter)")
 
