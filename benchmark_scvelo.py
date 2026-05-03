@@ -115,6 +115,20 @@ def main():
     print(f"  Median confidence: {ss_conf:.3f}")
     print(f"  Consistency: { {k: round(v, 3) for k, v in ss_consistency.items()} }")
 
+    # Save velocity matrix + γ + gene names for direct Julia comparison
+    try:
+        import h5py
+        V_ss = adata_ss.layers["velocity"]
+        if issparse(V_ss): V_ss = V_ss.toarray()
+        with h5py.File("models/scvelo_ss_comparison.h5", "w") as fh:
+            fh.create_dataset("velocity",   data=V_ss.astype(np.float32))
+            fh.create_dataset("gamma",      data=adata_ss.var["velocity_gamma"].fillna(0).values.astype(np.float32))
+            fh.create_dataset("gene_names", data=np.array(adata_ss.var_names.tolist(), dtype="S"))
+            fh.create_dataset("cell_types", data=np.array(adata_ss.obs[cell_type_key].tolist(), dtype="S"))
+        print("  Saved models/scvelo_ss_comparison.h5 (velocity, gamma, gene_names)")
+    except Exception as e:
+        print(f"  Warning: could not save H5 comparison file: {e}")
+
     # ── Dynamical model (optional) ─────────────────────────────────────────────
     dyn_time        = None
     dyn_conf        = None
