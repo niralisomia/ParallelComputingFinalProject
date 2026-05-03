@@ -1,0 +1,24 @@
+name = "RNAVelocitySciML"
+uuid = "3c653a82-e19b-4710-ba88-43da99b2ae6e"
+version = "0.1.0"
+
+[deps]
+CairoMakie = "13e3bfed-0b38-50eb-a417-4853aaffa1e1"
+ComponentArrays = "b0b7db55-cfe0-4ebb-8df1-c1bed9a0d0d7"
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+Distributions = "31c24e10-a181-5633-b31e-0e3b7c3e5a1a"
+HDF5 = "f67ccb44-e63f-5c2f-98bd-93c878a288f0"
+Lux = "b2108857-7c20-44ae-877f-44775787dd68"
+MultivariateStats = "6f286f6a-111f-5876-9341-433c648ce931"
+NearestNeighbors = "b8a86587-4115-5bc1-833a-7a68d2b9f0fd"
+Optimisers = "3bd65402-5787-11e9-1adc-3974dbd4dde4"
+OrdinaryDiffEq = "1dea7af3-3e70-54e8-a0de-056f3d16a512"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+Random = "9a3f8284-a2c9-5f02-9de1-2e71f21e1b0a"
+SciMLSensitivity = "1ed8b502-d754-442c-8d58-3a08805e0f96"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+Zygote = "e88e6eb3-aa80-5325-afca-94141d7381a0"
+
+[compat]
+julia = "1.9"
