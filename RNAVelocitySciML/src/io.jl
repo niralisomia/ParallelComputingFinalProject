@@ -16,7 +16,7 @@ function read_csr_matrix(grp::HDF5.Group)
     n_rows = length(indptr) - 1
 
     # Read n_cols from the HDF5 shape attribute (reliable even if last col is all-zero)
-    attr = attributes(grp)
+    attr = HDF5.attributes(grp)
     n_cols = if haskey(attr, "shape")
         Int(read(attr["shape"])[2])
     elseif haskey(attr, "h5sparse_shape")
