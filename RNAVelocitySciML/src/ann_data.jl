@@ -2,6 +2,22 @@
 # Data structures & preprocessing
 # ─────────────────────────────────────────────────────────────────
 
+"""
+    AnnData
+
+Container mirroring Python [AnnData](https://anndata.readthedocs.io/) / scVelo:
+count matrices, cell and gene metadata, low-dimensional embeddings (`obsm`), and
+unstructured results (`uns`) in one object.
+
+Fields:
+- `X::Matrix{Float32}` — main matrix, **cells × genes** (typically spliced counts after load).
+- `layers::Dict{String,Matrix{Float32}}` — e.g. `"spliced"`, `"unspliced"`.
+- `obs`, `var` — per-cell and per-gene metadata.
+- `obsm::Dict{String,Matrix{Float32}}` — embeddings (PCA, UMAP, …), each **cells × dimensions**.
+- `uns::Dict{String,Any}` — pipeline outputs such as velocity parameters.
+
+Use the keyword constructor `AnnData(X; layers=..., obs=..., ...)` for a filled object.
+"""
 struct AnnData
     X::Matrix{Float32}          # (cells × genes) spliced counts
     layers::Dict{String, Matrix{Float32}}  # e.g. "spliced", "unspliced"
@@ -20,7 +36,18 @@ function AnnData(X::Matrix{Float32};
     AnnData(X, layers, obs, var, obsm, uns)
 end
 
+"""
+    n_cells(adata::AnnData) -> Int
+
+Number of cells (rows of `adata.X`).
+"""
 n_cells(adata::AnnData) = size(adata.X, 1)
+
+"""
+    n_genes(adata::AnnData) -> Int
+
+Number of genes (columns of `adata.X`).
+"""
 n_genes(adata::AnnData) = size(adata.X, 2)
 
 """

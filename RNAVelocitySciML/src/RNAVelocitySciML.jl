@@ -23,6 +23,7 @@ using NearestNeighbors
 using HDF5
 using CairoMakie
 import CairoMakie: Axis
+import HDF5
 using ProgressMeter
 
 export AnnData, n_cells, n_genes

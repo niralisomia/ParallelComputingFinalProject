@@ -2237,7 +2237,7 @@ uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 version = "1.11.0"
 
 [[deps.RNAVelocitySciML]]
-deps = ["CairoMakie", "ComponentArrays", "DifferentialEquations", "Distributions", "HDF5", "LinearAlgebra", "Logging", "Lux", "MultivariateStats", "NearestNeighbors", "Optimisers", "OrdinaryDiffEq", "ProgressMeter", "Random", "SciMLSensitivity", "SparseArrays", "Statistics", "Zygote"]
+deps = ["CairoMakie", "ComponentArrays", "DifferentialEquations", "Distributions", "HDF5", "LinearAlgebra", "Lux", "MultivariateStats", "NearestNeighbors", "Optimisers", "OrdinaryDiffEq", "ProgressMeter", "Random", "SciMLSensitivity", "SparseArrays", "Statistics", "Zygote"]
 path = "."
 uuid = "3c653a82-e19b-4710-ba88-43da99b2ae6e"
 version = "0.1.0"
